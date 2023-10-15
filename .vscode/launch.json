@@ -11,7 +11,7 @@
       "program": "${file}",
       "console": "integratedTerminal",
       "justMyCode": true,
-      "args": ["bali1234bali1234", "bang"],
+      "args": ["daniel", "hello gimmicks"],
       "env": {
         "PYTHONPATH": "${PYTHONPATH}:D:\\Pythons\\cryptography0"
       }

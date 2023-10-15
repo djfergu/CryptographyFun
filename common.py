@@ -1,5 +1,6 @@
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
+from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA256
 
 import os
@@ -30,8 +31,8 @@ def find_private_key(who):
         return f
     return None
 
-def import_key(public_key_file):
-    f = open(public_key_file, "r")
+def import_key(key_file):
+    f = open(key_file, "r")
     key = RSA.import_key(f.read())
     return key
 
@@ -70,3 +71,12 @@ def base64_encode(data):
 
 def base64_decode(data):
     return base64.b64decode(data)
+
+def sign_data(data, key):
+    signer = pkcs1_15.new(key)
+    signature = signer.sign(data)
+    return signature
+
+def verify_data(hash, key, signature):
+    verifier = pkcs1_15.new(key)
+    return verifier.verify(hash, signature)
